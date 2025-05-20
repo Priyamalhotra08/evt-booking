@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/home2.css">
+ 
+</head>
+<body>
+<div class="loading-container" id="preloader">
+  <div class="loading-text logo">
+      <span>E</span><span>V</span><span>E</span><span>N</span><span>T</span><span>I</span><span>F</span><span>Y</span>
+  </div>
+</div>
+<div id = "main-content" style="display: none;">
+  <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <canvas class="blob-canvas"></canvas>
+    <!-- main-header start  -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="/" class="logo">Eventify</a>
+            </div>
+            
+            <div class="nav-toggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <ul class="nav-list ">
+                    <li class="nav-item">
+                        <a href="#" class="nav-link active">Home</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">
+                           Events
+                            <svg class="icon chevron-icon" viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="/comedy">Comedy Shows</a></li>
+                            <li><a href="/kids">Kids</a></li>
+                            <li><a href="/adventure">Adventure and Fun</a></li>
+                            <li><a href="/music">Music Shows</a></li>
+                            <li><a href="/art">Art and Crafts</a></li>
+                            <li><a href="/workshops">Workshops and More</a></li>
+                            <li><a href="/game">Interactive Games</a></li>
+                            <li><a href="/upskill">Upskill and Training</a></li>
+                            <li><a href="/food">Food and Drinks</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/category" class="nav-link">
+                            ListYourShow
+                            
+                        </a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/help" class="nav-link">Help</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+         <div class="search-container">
+    <form class="search-bar d-flex" action="/search" method="GET" id="searchForm" onsubmit="return validateSearch()">
+      <input type="text" class="search-input" placeholder="Search..." name="query" id="searchInput">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<!-- main-header end  -->
+
+<!-- second header start  -->
+    <div class="header position-absolute  " id="header" style="top: 80px; width: 100%; z-index: 10 ;">
+ 
+        <nav class="navbar slim-navbar text-white h-75" style="min-height: 50px; " >
+            <div class="container-fluid  text-white p-2">
+                <a class="navbar-brand" href="#">
+                    <img src="/images/map-icon.png" alt="Logo" width="30" height="30" class="d-inline-block  align-text-top">
+                   <b class="text-white"><%= state %></b> 
+                  </a>
+              
+            <!-- From Uiverse.io by reglobby --> 
+<div
+aria-label="User  Login Button"
+tabindex="0"
+role="button"
+class="user-profile mt-2">
+<% if (user) { %>
+<div class="user-profile-inner">
+  <p class="mt-3"> Hi  <%= user.name%> </p>
+</div>
+  
+  <% } else {%>
+    <div class="user-profile-inner">
+      <svg
+    aria-hidden="true"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 24 24"
+  >
+    <g data-name="Layer 2" id="Layer_2">
+      <path
+        d="m15.626 11.769a6 6 0 1 0 -7.252 0 9.008 9.008 0 0 0 -5.374 8.231 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 9.008 9.008 0 0 0 -5.374-8.231zm-7.626-4.769a4 4 0 1 1 4 4 4 4 0 0 1 -4-4zm10 14h-12a1 1 0 0 1 -1-1 7 7 0 0 1 14 0 1 1 0 0 1 -1 1z"
+      ></path>
+    </g>
+  </svg>
+  <p class="mt-3"><a href="/login" class="text-white text-decoration-none">Log In</a></p>
+</div>
+<% } %>
+</div>
+</div>
+
+            </div>
+          </nav>
+    </div>
+    <!-- second header end  -->
+
+    <!-- Hero Section start  -->
+    <main>
+       
+         <div
+            class="container-fluid">
+           <div class="row">
+            <div class="col-md-6 col-sm-12">
+                <div class="content">
+                    <div class="hero mt-md-5 mt-lg-5 mt-0">
+                      
+                        <h1 id="typing-effect" class="mt-lg-5"> Experience the Best Events Anytime Anywhere! </h1>
+                        <p>Discover a world of unforgettable experiences, from thrilling concerts and comedy shows to interactive workshops and family-friendly events. </p>
+                        <button class="cta-button"> <a href="#swiper-container" class="text-decoration-none text-white">Explore Now</a></button>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-12 mt-md-5 mt-0">
+              <div class="l-center mt-md-5 mt-0">
+                <div class="l-container">
+                  <div class="l-grid">
+                    <div>
+                      <div class="l-max o-aspect-ratio mt-md-5" data-padding="80">
+                        <div class="o-overlap-bottom mt-md-5">
+                          <div class="o-aspect-ratio" data-padding="66">
+                            <img class="o-aspect-ratio__media" src="https://images.unsplash.com/photo-1696569083014-ea89faf5c7ec?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNvbmNlcnQlMjBldmVudHN8ZW58MHx8MHx8fDA%3D" alt="Misty shroud over a forest" >
+                          </div>
+                          <div class="o-overlap-bottom__deco"></div>
+                        </div>
+                        <div class="o-overlap-top">
+                          <div class="o-aspect-ratio" data-padding="66">
+                            <img class="o-aspect-ratio__media" src="https://images.unsplash.com/photo-1544531586-fde5298cdd40?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Plant in vase of water">
+                          </div>
+                          <div class="o-overlap-top__deco o-aspect-ratio"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                  </div>
+                </div>
+              </div>
+            </div>
+           </div>
+         </div>
+     <!-- Hero Section end  -->
+  
+<!-- swiper start  -->
+    <div class="container-fluid" id="swiper-container">
+        <h1 id="heading-2"> The Best of Live Events</h1>
+      <div class="swiper">
+        <div class="swiper-wrapper">
+          
+          <div class="swiper-slide">
+            <a href="/comedy" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTYwKyBFdmVudHM%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/comedy-shows-collection-202211140440.png" />
+           <p> Comedy Shows</p></a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/adventure" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MjArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/amusement-parks-banner-desktop-collection-202503251132.png" />
+            <p>Amusement Parks</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/music" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NjArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/theatre-shows-collection-202211140440.png" />
+            <p>Theatre Shows</p></a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/kids" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/kids-banner-desktop-collection-202503251132.png" />
+            <p>Kids</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/adventure" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/adventure-fun-collection-202211140440.png" />
+            <p>Adventure and Fun</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/music" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NzUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/music-shows-collection-202211140440.png" />
+            <p>Music Shows</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/art" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-NjUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/arts-crafts-collection-202211140440.png" />
+            <p>Art and Crafts</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/workshops" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTE1KyBFdmVudHM%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/workshop-and-more-web-collection-202211140440.png" />
+            <p>Workshops and More</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/games" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MjArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/interactive-games-collection-202211140440.png" />
+            <p>Interactive Games</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/upskill" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTUrIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/upskill-collection-202211140440.png" />
+            <p>Upskill and Training</p> </a>
+          </div>
+          <div class="swiper-slide">
+            <a href="/food" class="text-decoration-none text-white">
+            <img
+              src="https://assets-in.bmscdn.com/discovery-catalog/collections/tr:w-800,h-800:l-text,ie-MTArIEV2ZW50cw%3D%3D,co-FFFFFF,ff-Roboto,fs-64,lx-48,ly-320,tg-b,pa-8_0_0_0,l-end:w-300/food-drinks-collection-202211140440.png" />
+            <p>Food and Drinks</p> </a>
+          </div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+    <!-- swiper end  -->
+
+    <!-- cards start  -->
+<div class="intro">
+    <div class="intro-slideshow">
+        <img src="https://cdn.prod.website-files.com/64ad227a3e66387fc5d89320/65bfc39221930260292a030b_ComedyClub.jpg">
+        <img src="https://media.istockphoto.com/id/1295114854/photo/empty-red-armchairs-of-a-theater-ready-for-a-show.jpg?s=612x612&w=0&k=20&c=0rDtwzMmLbqe_8GuGw2dpjkD0MsXGywJmdmg0jDbMxQ=">
+        <img src="https://cdn1.parksmedia.wdprapps.disney.com/resize/mwImage/1/1349/464/75/vision-dam/digital/parks-platform/parks-global-assets/disneyland/events/after-dark/20240401_RH_074-2x1.jpg?2024-11-25T21:52:27+00:00">
+        <img src="https://www.andbeyond.com/wp-content/uploads/sites/5/delhi-crafts-museum3.jpg">
+        <img src="https://media.istockphoto.com/id/516449022/photo/lady-with-kayak.jpg?s=612x612&w=0&k=20&c=Yp-rzpmY_hbhpbTE38z6toouRKW-lAEN-ZvuWvH8kKE=">
+      </div>
+      
+      <div class="intro-header">
+        <h1>Turning Your Vision Into Unforgettable Events.</h1>
+       
+      </div>
+    </div>
+
+    <!-- cards end  -->
+
+ <!-- section start  -->
+ <section class="tech-solutions l-container l-center ">
+  <div class="container-fluid" id="book-event">
+      <div class="about-badge animate__animated animate__fadeIn text-info bg-dark fs-5">How to Book an Event</div>
+      <h1 class="hero-title animate__animated animate__fadeInUp">
+          Your Gateway to the Best Events of <span class="animate__animated animate__fadeIn animate__delay-1s">Solutions</span> & <span class="animate__animated animate__fadeIn animate__delay-1s">Technology</span>
+      </h1>
+
+      <div class="solutions-wrapper">
+          <div class="solutions-left animate__animated animate__fadeInLeft">
+              <div class="main-image">
+                  <img src="https://validthemes.net/site-template/tekni/assets/img/about/5.jpg" alt="Team working together" />
+              </div>
+              <div class="cert-badge animate__animated animate__fadeInRight animate__delay-1s">
+                <img src="https://validthemes.net/site-template/tekni/assets/img/icon/10.png" height="100" width="100">
+      
+                  <h3>Certified <br> WebApp</h3>
+              </div>
+              <div class="secondary-image animate__animated animate__fadeInUp animate__delay-1s">
+                  <img src="https://validthemes.net/site-template/tekni/assets/img/about/6.jpg" alt="Happy client" />
+              </div>
+          </div>
+
+          <div class="solutions-right">
+              <div class="solution-cards">
+                  <div class="solution-card" id="card1">
+                      <div class="solution-number">01</div>
+                      <div class="solution-content">
+                          <h3>Browse & Select</h3>
+                          <p>Explore a variety of events by category, location, or date. Use filters to find the perfect match for your interests.</p>
+                      </div>
+                  </div>
+
+                  <div class="solution-card" id="card2">
+                      <div class="solution-number">02</div>
+                      <div class="solution-content">
+                          <h3>View Details & Choose Options</h3>
+                          <p>Click on the event card to see full details, including schedule and venue. Select the number of tickets and enjoy multiple ticket bookings at a same time.</p>
+                      </div>
+                  </div>
+
+                  <div class="solution-card" id="card3">
+                      <div class="solution-number">03</div>
+                      <div class="solution-content">
+                          <h3>Book & Confirm</h3>
+                          <p>Proceed to checkout. Fill in your details, make a secure payment, and receive instant confirmation via email or your dashboard.</p>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <svg class="bg-graphic" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <path fill="#5636e9" d="M45.7,-52.2C58.9,-44.3,69.2,-29.7,71.6,-14C74,1.8,68.5,18.5,59.1,31.1C49.7,43.7,36.3,52.1,22.1,56.6C7.9,61,-7.1,61.6,-21.2,57.4C-35.3,53.2,-48.5,44.3,-56.8,31.7C-65.1,19.1,-68.5,2.8,-65.3,-12.1C-62.1,-26.9,-52.2,-40.4,-39.7,-48.2C-27.1,-56,-13.6,-58.3,1.1,-59.6C15.8,-60.9,32.5,-60.2,45.7,-52.2Z" transform="translate(100 100)" />
+          </svg>
+      </div>
+  </div>
+</section>
+   
+    <!-- section end  -->
+
+
+    <!-- testimonials start  -->
+    <div class="responsive-container-block bigContainer mb-4" id="testimonials">
+      <div class="responsive-container-block Container">
+        <p class="text-blk headingText">
+          What Our Clients Say
+        </p>
+        <p class="text-blk subHeading text-info">
+          Testimonials
+        </p>
+        <div class="responsive-container-block cardContainer">
+          <div class="responsive-cell-block wk-desk-3 wk-tab-6 wk-mobile-12 wk-ipadp-6 oddCellBG">
+            <img class="desktopImage" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ct15.svg">
+            <p class="text-blk name">
+              Maxwell Doe
+            </p>
+            <p class="text-blk position text-info">
+              Client
+            </p>
+            <div class="socialIcons">
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET14.jpg">
+              </a>
+              <a>
+                <img class="google socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET13.jpg">
+              </a>
+              <a>
+                <img class="facebook socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET12.jpg">
+              </a>
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET11.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="responsive-cell-block wk-desk-3 wk-tab-6 wk-mobile-12 wk-ipadp-6">
+            <img class="desktopImage" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ct12.svg">
+            <p class="text-blk name">
+              Maxwell Doe
+            </p>
+            <p class="text-blk position text-info">
+              Client
+            </p>
+            <div class="socialIcons">
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET14.jpg">
+              </a>
+              <a>
+                <img class="google socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET13.jpg">
+              </a>
+              <a>
+                <img class="facebook socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET12.jpg">
+              </a>
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET11.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="responsive-cell-block wk-desk-3 wk-tab-6 wk-mobile-12 wk-ipadp-6 oddCellBG">
+            <img class="desktopImage" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ct13.svg">
+            <p class="text-blk name">
+              Maxwell Doe
+            </p>
+            <p class="text-blk position text-info">
+            Client
+            </p>
+            <div class="socialIcons">
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET14.jpg">
+              </a>
+              <a>
+                <img class="google socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET13.jpg">
+              </a>
+              <a>
+                <img class="facebook socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET12.jpg">
+              </a>
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET11.jpg">
+              </a>
+            </div>
+          </div>
+          <div class="responsive-cell-block wk-desk-3 wk-tab-6 wk-mobile-12 wk-ipadp-6">
+            <img class="desktopImage" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ct14.svg">
+            <p class="text-blk name">
+              Maxwell Doe
+            </p>
+            <p class="text-blk position text-info">
+              Client
+            </p>
+            <div class="socialIcons">
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET14.jpg">
+              </a>
+              <a>
+                <img class="google socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET13.jpg">
+              </a>
+              <a>
+                <img class="facebook socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET12.jpg">
+              </a>
+              <a>
+                <img class="socialMediaIcons" src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/ET11.jpg">
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- testimonials end  -->
+
+      <!-- footer start  -->
+        <section class="footer">
+          <div class="footer-row">
+            <div class="footer-col">
+              <h4>Info</h4>
+              <ul class="links">
+                <li><a href="/">About Us</a></li>
+                <li><a href="#book-event">Book an Event</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#swiper-container">Services</a></li>
+                
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Explore Categories</h4>
+              <ul class="links">
+                <li><a href="/comedy">Comedy Shows</a></li>
+                <li><a href="/kids"> Kids</a></li>
+                <li><a href="/adventure">Adventure and Fun</a></li>
+                <li><a href="/music">Music Shows</a></li>
+                <li><a href="/art">Art and Crafts</a></li>
+                <li><a href="/workshops">Workshops and More</a></li>
+                <li><a href="/games">Interactive Games</a></li>
+                <li><a href="/upskill">Upskill and Trainings</a></li>
+                <li><a href="/food">Food and Drinks</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Others</h4>
+              <ul class="links">
+                <li><a href="/category">List your Show </a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/help">Help</a></li>
+               
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Newsletter</h4>
+              <p>
+                Subscribe to our newsletter for a weekly dose
+                of news, updates, helpful tips, and
+                exclusive offers.
+              </p>
+              <form action="#">
+                <input type="text" placeholder="Your email" required>
+                <button type="submit">SUBSCRIBE</button>
+              </form>
+              <div class="icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-github"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <!-- footer end  -->
+    </main>
+    </div>
+     <script>
+
+
+  function validateSearch() {
+    const searchValue = document.getElementById('searchInput').value.trim();
+    
+    if (searchValue === '') {
+      // Show alert if search input is empty
+      alert('Your search is empty! Please enter what you want to search for.');
+      return false; // Prevent form submission
+    }
+    
+    // Allow form submission if input has value
+    return true;
+  }
+
+     </script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="/js/index.js"></script>
+<script src="/js/index2.js"></script>
+<script src="/js/cursor.js"></script>
+<script src="/js/section.js"></script>
+</body>
+</html>

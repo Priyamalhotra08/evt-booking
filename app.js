@@ -1,0 +1,50 @@
+const express = require('express')
+const path = require('path')
+
+const app = express()
+const dotenv = require('dotenv')
+const cookieParser = require('cookie-parser')
+dotenv.config()
+
+const database = require('./config/db')
+const userRouter = require('./routes/user')
+const eventRoute = require('./routes/event')
+
+const kidsRoute = require('./routes/kidsRoute')
+const adventureRoute = require('./routes/adventureRoute')
+const musicRoute = require('./routes/musicRoute')
+const artRoute = require('./routes/artRoute')
+const workshopsRoute = require('./routes/workshopsRoute')
+const gamesRoute = require('./routes/gamesRoute')
+const upskillRoute = require('./routes/upskillRoute')
+const foodRoute = require('./routes/foodRoute')
+const cardRoute = require('./routes/cardRoute')
+const contactRoute = require('./routes/contactRoute')
+const paymentRoute = require('./routes/paymentRoute') // Add the payment route
+const filter = require('./routes/filter')
+const searchRoute = require('./routes/searchRoute')
+app.set('view engine' , 'ejs') 
+app.use(cookieParser())
+
+app.use(express.static(path.join(__dirname) + '/public'))  
+app.use('/uploads', express.static('uploads'));
+app.use('/', userRouter)
+app.use('/', eventRoute)
+app.use('/' , kidsRoute)
+app.use('/', adventureRoute)
+app.use('/', musicRoute)
+app.use('/', artRoute)
+app.use('/', workshopsRoute)
+app.use('/', gamesRoute)
+app.use('/', upskillRoute)
+app.use('/', foodRoute)
+app.use('/', cardRoute)
+app.use('/', contactRoute)
+app.use('/', paymentRoute) // Add the payment route
+app.use('/', filter)
+app.use('/', searchRoute)
+app.get('/help',(req, res) =>{
+    res.render('help')
+})
+
+app.listen(3001)

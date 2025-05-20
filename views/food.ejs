@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comedy Shows In Delhi-NCR</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/home2.css">
+    <link rel="stylesheet" href="/styles/comedy.css">
+   
+</head>
+<body>
+      <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <canvas class="blob-canvas"></canvas>
+     <!-- main-header start  -->
+     <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="/" class="logo">Eventify</a>
+            </div>
+            
+            <div class="nav-toggle">
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <ul class="nav-list ">
+                    <li class="nav-item">
+                        <a href="/" class="nav-link ">Home</a>
+                    </li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link active">
+                           Events
+                            <svg class="icon chevron-icon" viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="/comedy">Comedy Shows</a></li>
+                            <li><a href="/kids">Kids</a></li>
+                            <li><a href="/adventure">Adventure and Fun</a></li>
+                            <li><a href="/music">Music Shows</a></li>
+                            <li><a href="/art">Art and Crafts</a></li>
+                            <li><a href="/workshops">Workshops and More</a></li>
+                            <li><a href="/game">Interactive Games</a></li>
+                            <li><a href="/upskill">Upskill and Training</a></li>
+                            <li><a href="/food">Food and Drinks</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/category" class="nav-link">
+                            ListYourShow
+                            
+                        </a>
+                        
+                    </li>
+                    
+                    <li class="nav-item">
+                        <a href="/contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/help" class="nav-link">Help</a>
+                    </li>
+                </ul>
+                
+                <div class="nav-actions">
+                    <div class="search-container">
+    <form class="search-bar" action="/search" method="GET" onsubmit="return validateSearch()">
+                         <input type="text" class="search-input" placeholder="Search..." name="query" id="searchInput">
+                        <button class="search-btn">
+                            <svg class="icon search-icon" viewBox="0 0 24 24" width="18" height="18">
+                                <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"></path>
+                            </svg>
+                        </button>
+    </form>
+                    </div>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+<!-- main-header end  -->
+    <div class="page-header"> 
+        <h2 class=" fs-4 fw-bold ">  Discover Every Show in Every Moment. <br> All in One Place</h2>
+ 
+    </div>
+    <div class="main-container">
+        <div class="row">
+            <div class="col-lg-3 col-md-4">
+                <div class="filter-section">
+                    <h2 class="filter-heading">Filters</h2>
+                    <div class="filter-dropdown">
+                        <div class="filter-dropdown-header" data-filter="date">
+                            <span><i class="fas fa-calendar-alt me-2"></i> Date</span>
+                            <div><span class="clear-filter" data-filter="date">Clear</span><i class="fas fa-chevron-down dropdown-icon"></i></div>
+                        </div>
+                        <div class="filter-dropdown-content">
+                            <label class="custom-radio">Today <input type="radio" name="date" value="today"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Tomorrow <input type="radio" name="date" value="tomorrow"><span class="checkmark"></span></label>
+                            <label class="custom-radio">This Weekend <input type="radio" name="date" value="weekend"><span class="checkmark"></span></label>
+                            <label class="custom-radio">This Week <input type="radio" name="date" value="week"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Next Week <input type="radio" name="date" value="nextweek"><span class="checkmark"></span></label>
+                            <label class="custom-radio">This Month <input type="radio" name="date" value="month"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Next Month <input type="radio" name="date" value="nextmonth"><span class="checkmark"></span></label>
+                        </div>
+                    </div>
+                    <div class="filter-dropdown">
+                        <div class="filter-dropdown-header" data-filter="language">
+                            <span><i class="fas fa-language me-2"></i> Language</span>
+                            <div><span class="clear-filter" data-filter="language">Clear</span><i class="fas fa-chevron-down dropdown-icon"></i></div>
+                        </div>
+                        <div class="filter-dropdown-content">
+                            <label class="custom-radio">English <input type="radio" name="language" value="English"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Hindi <input type="radio" name="language" value="Hindi"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Hinglish <input type="radio" name="language" value="Hinglish"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Punjabi <input type="radio" name="language" value="Punjabi"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Multilingual <input type="radio" name="language" value="Multi"><span class="checkmark"></span></label>
+                        </div>
+                    </div>
+                    <div class="filter-dropdown">
+                        <div class="filter-dropdown-header" data-filter="category">
+                            <span><i class="fas fa-tags me-2"></i> Categories</span>
+                            <div><span class="clear-filter" data-filter="category">Clear</span><i class="fas fa-chevron-down dropdown-icon"></i></div>
+                        </div>
+                        <div class="filter-dropdown-content">
+                            <label class="custom-radio">Adults Only (18+) <input type="radio" name="category" value="18"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Family Friendly <input type="radio" name="category" value="19"><span class="checkmark"></span></label>
+                            <label class="custom-radio">U/A (13+) <input type="radio" name="category" value="ua"><span class="checkmark"></span></label>
+                        </div>
+                    </div>
+                    <div class="filter-dropdown">
+                        <div class="filter-dropdown-header" data-filter="price">
+                            <span><i class="fas fa-rupee-sign me-2"></i> Price</span>
+                            <div><span class="clear-filter" data-filter="price">Clear</span><i class="fas fa-chevron-down dropdown-icon"></i></div>
+                        </div>
+                        <div class="filter-dropdown-content">
+                            <label class="custom-radio">Free <input type="radio" name="price" value="free"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Under ₹500 <input type="radio" name="price" value="under500"><span class="checkmark"></span></label>
+                            <label class="custom-radio">₹500 - ₹1000 <input type="radio" name="price" value="500to1000"><span class="checkmark"></span></label>
+                            <label class="custom-radio">₹1000 - ₹2000 <input type="radio" name="price" value="1000to2000"><span class="checkmark"></span></label>
+                            <label class="custom-radio">Above ₹2000 <input type="radio" name="price" value="above2000"><span class="checkmark"></span></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-8">
+                <div id="shows-container" class="d-flex flex-wrap gap-4 justify-content-start">
+                   <% if(events.length == 0){ %>
+                        <div class="no-shows">
+                            <h2 style="color: white;">No Shows Found</h2>
+                            <p style="color: white;">Try changing your filters or check back later.</p>
+                        </div>
+                    <% } else { %>
+                        <% events.forEach(evt => { %>
+                            <div class="show-card border rounded shadow-sm p-2" style="width: 300px;">
+                                <div class="show-image position-relative">
+                                    <img src="/uploads/img/<%= evt.eventPhotos[0] %>" alt="Artist Photo" class="img-fluid w-100 rounded" style="height: 200px; object-fit: cover;">
+                                    <span class="promo-tag position-absolute top-0 start-0  px-2 py-1  fw-bold">PROMOTED</span>
+                                    <span class="show-date position-absolute bottom-0 end-0 bg-dark text-white px-2 py-1 rounded-start">
+                                        <%= new Date(evt.date).toLocaleDateString() %>
+                                    </span>
+                                </div>
+                                <div class="show-content mt-2">
+                                    <h3 class="show-title h5 text-start"> <%= evt.title %> </h3>
+                                    <p class="show-artist mb-1 text-muted"> <%= evt.artists.join(', ') %> </p>
+                                    <p class="show-venue mb-1"><i class="fas fa-map-marker-alt me-2"></i> <%= evt.address %></p>
+                                    <p class="show-price fw-bold"> ₹ <%= evt.price %></p>
+                                    <button class="btn btn-outline-dark btn-sm mt-2 w-100">
+                                        <a href="/card/<%= evt._id %>" style="text-decoration: none; color: inherit;">Book Now</a>
+                                    </button>
+                                </div>
+                            </div>
+                        <% }); %>
+                    <% } %>
+                </div>  
+            </div>
+        </div> 
+    </div>
+      <script>
+
+
+  function validateSearch() {
+    const searchValue = document.getElementById('searchInput').value.trim();
+    
+    if (searchValue === '') {
+      // Show alert if search input is empty
+      alert('Your search is empty! Please enter what you want to search for.');
+      return false; // Prevent form submission
+    }
+    
+    // Allow form submission if input has value
+    return true;
+  }
+
+     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/food.js"></script>
+    <script src="/js/cursor.js"></script>
+        <script src="/js/index.js"></script>
+
+</body>
+</html>

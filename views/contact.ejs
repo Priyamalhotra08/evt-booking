@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/contact.css">
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/home2.css">
+  
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <canvas class="blob-canvas"></canvas>
+  <!-- main-header start  -->
+  <header class="header">
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="/" class="logo">Eventify</a>
+        </div>
+        
+        <div class="nav-toggle">
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="nav-menu">
+            <ul class="nav-list ">
+                <li class="nav-item">
+                    <a href="/" class="nav-link ">Home</a>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="#" class="nav-link">
+                       Events
+                        <svg class="icon chevron-icon" viewBox="0 0 24 24" width="14" height="14">
+                            <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+                        </svg>
+                    </a>
+                    <ul class="dropdown">
+                        <li><a href="/comedy">Comedy Shows</a></li>
+                        <li><a href="/kids">Kids</a></li>
+                        <li><a href="/adventure">Adventure and Fun</a></li>
+                        <li><a href="/music">Music Shows</a></li>
+                        <li><a href="/art">Art and Crafts</a></li>
+                        <li><a href="/workshops">Workshops and More</a></li>
+                        <li><a href="/game">Interactive Games</a></li>
+                        <li><a href="/upskill">Upskill and Training</a></li>
+                        <li><a href="/food">Food and Drinks</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="/category" class="nav-link">
+                        ListYourShow
+                        
+                    </a>
+                    
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/contact" class="nav-link active">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/help" class="nav-link">Help</a>
+                </li>
+            </ul>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" class="search-input" placeholder="Search...">
+                    <button class="search-btn">
+                        <svg class="icon search-icon" viewBox="0 0 24 24" width="18" height="18">
+                            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" fill="currentColor"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- main-header end  -->
+<!--Map iframe starts here-->
+<div class="contact-map appear "  data-aos="fade-in" data-aos-delay="300" style=" pointer-events: none; margin-top: 50px;">
+  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d448193.95105503476!2d76.76355916510953!3d28.644287347703283!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x37205b715389640!2sDelhi!5e0!3m2!1sen!2sin!4v1746678479979!5m2!1sen!2sin"  allowfullscreen="" class="mt-5" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+</div>
+
+
+<!--Map iframe end here-->
+<div class="container contactpage">
+	<div class="row">
+		<!-- #content start here -->
+
+		<div id="content" class="col-sm-12 appear" data-aos="fade-up" data-aos-delay="300">
+      
+			<form class="form-horizontal" method="post" action="/contact" >
+				<fieldset>
+				  <legend>Contact Us</legend>
+          <% if (typeof message !== 'undefined') { %>
+            <div class="d-flex justify-content-center mt-4">
+              <div class="alert alert-<%= messageType %> text-center w-75" role="alert">
+                <%= message %>
+              </div>
+            </div>
+          <% } %>
+					<div class="form-group required row">
+						<div class="col-sm-6 mb-3">
+              <input type="text" class="form-control" id="input-name" placeholder="Name" name="name" value="<%= typeof formData !== 'undefined' ? formData.name : '' %>" required>
+						</div>
+						<div class="col-sm-6 mb-3">
+						  <input type="text" class="form-control" placeholder="E-Mail" id="input-email" value="<%= typeof formData !== 'undefined' ? formData.email : '' %>" name="email" required="">
+						</div>
+					</div>
+					<div class="form-group required row">
+						<div class="col-sm-6 mb-3">
+						  <input type="text" class="form-control" id="input-website" placeholder="state" value="<%= typeof formData !== 'undefined' ? formData.state : '' %>" name="state" required="">
+						</div>
+						<div class="col-sm-6 mb-3">
+						  <input type="text" class="form-control" placeholder="Phone Number" id="input-telephone" value="<%= typeof formData !== 'undefined' ? formData.telephone : '' %>" name="telephone" required="">
+						</div>
+					</div>
+					<div class="form-group required row">
+						<div class="col-sm-12 mb-3">
+              <textarea class="form-control" placeholder="Please write your enquiry..." id="input-enquiry" rows="10" name="enquiry" required><%= typeof formData !== 'undefined' ? formData.enquiry : '' %></textarea>
+						</div>
+					</div>
+					<div class="buttons">
+						<div class="float-end ">
+							<input type="submit" value="Submit" class="btn btn-info ps-5 pe-5 p-2 ">
+						</div>
+					</div>
+				</fieldset>
+			</form>	
+    
+			<div class="row">
+				<div class="mainbox col-sm-12">	
+					<h1 class="text-info fs-4 fw-bolder">Get in touch with us</h1>
+					<div class="row">
+						<div class="col-sm-4 appear"  data-aos="fade-right" data-delay="300">
+							<div class="box1">
+								<div class="icons">
+								   <i aria-hidden="true" class="fa fa-phone"></i>
+								</div><br/>
+								<h3>Phone No </h3>
+								<ul class="list-unstyled">
+									<li>+91 9356372998</li>
+									<li>+91 161-5012104</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4 appear"  data-aos="fade-up" data-delay="300">
+							<div class="box1">
+								<div class="icons">
+								   <i aria-hidden="true" class="fa fa-envelope"></i>
+								</div><br/>
+								<h3>Email </h3>
+								<ul class="list-unstyled">
+									<li>info@themultimediadesigner.com </li>
+									<li>info@realestate.com</li>
+								</ul>
+							</div>
+						</div>
+						<div class="col-sm-4 appear" data-aos="fade-left" data-delay="300" >
+							<div class="box1">
+								<div class="icons">
+								   <i aria-hidden="true" class="fa fa-map-marker-alt"></i>
+								</div><br/>
+								<h3>Address</h3>
+								<ul class="list-unstyled">
+									<li>shop No:120, MD complex, <br>Noida New Delhi-141003 Delhi, INDIA	</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>				
+			</div>				
+		</div>
+		<!-- #content end here -->
+	</div>
+</div>
+<!-- main container end here -->
+ <!-- footer start  -->
+        <section class="footer">
+          <div class="footer-row">
+            <div class="footer-col">
+              <h4>Info</h4>
+              <ul class="links">
+                <li><a href="/">About Us</a></li>
+                <li><a href="/">Book an Event</a></li>
+                <li><a href="/">Testimonials</a></li>
+                <li><a href="/">Services</a></li>
+                
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Explore Categories</h4>
+              <ul class="links">
+                <li><a href="/comedy">Comedy Shows</a></li>
+                <li><a href="/kids"> Kids</a></li>
+                <li><a href="/adventure">Adventure and Fun</a></li>
+                <li><a href="/music">Music Shows</a></li>
+                <li><a href="/art">Art and Crafts</a></li>
+                <li><a href="/workshops">Workshops and More</a></li>
+                <li><a href="/games">Interactive Games</a></li>
+                <li><a href="/upskill">Upskill and Trainings</a></li>
+                <li><a href="/food">Food and Drinks</a></li>
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Others</h4>
+              <ul class="links">
+                <li><a href="/category">List your Show </a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/help">Help</a></li>
+               
+              </ul>
+            </div>
+            <div class="footer-col">
+              <h4>Newsletter</h4>
+              <p>
+                Subscribe to our newsletter for a weekly dose
+                of news, updates, helpful tips, and
+                exclusive offers.
+              </p>
+              <form action="#">
+                <input type="text" placeholder="Your email" required>
+                <button type="submit">SUBSCRIBE</button>
+              </form>
+              <div class="icons">
+                <i class="fa-brands fa-facebook-f"></i>
+                <i class="fa-brands fa-twitter"></i>
+                <i class="fa-brands fa-linkedin"></i>
+                <i class="fa-brands fa-github"></i>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <!-- footer end  -->
+
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+   AOS.init({
+    offset: 120, // Adjust the offset value
+    duration: 1000, // Animation duration
+});
+  </script>
+<script src="/js/index.js"></script>
+<script src="/js/index2.js"></script>
+<script src="/js/cursor.js"></script>
+</body>
+</html>

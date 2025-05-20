@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Comedy Shows In Delhi-NCR</title>
+
+    <!-- Bootstrap & FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="/styles/home.css">
+    <link rel="stylesheet" href="/styles/home2.css">
+    <link rel="stylesheet" href="/styles/comedy.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .show-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background-color: #fff;
+        }
+        .show-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+        }
+        .promo-tag {
+            background: #ffc107;
+            color: #000;
+            font-size: 0.75rem;
+        }
+        .page-header {
+            background-color: #343a40;
+            padding: 2rem;
+            color: #fff;
+            text-align: center;
+        }
+        .search-container {
+            position: relative;
+        }
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border-radius: 20px;
+            border: 1px solid #ccc;
+        }
+        .search-btn {
+            position: absolute;
+            right: 0.5rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .no-shows h2, .no-shows p {
+            text-align: center;
+            color: #555;
+        }
+        #shows-container {
+            padding: 0 2rem;
+        }
+    </style>
+</head>
+<body>
+      <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <canvas class="blob-canvas"></canvas>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="nav-brand">
+                <a href="/" class="logo">Eventify</a>
+            </div>
+
+            <div class="nav-toggle">
+                <div class="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <div class="nav-menu">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="/" class="nav-link">Home</a></li>
+                    <li class="nav-item has-dropdown">
+                        <a href="#" class="nav-link active">Events
+                            <svg class="icon chevron-icon" viewBox="0 0 24 24" width="14" height="14">
+                                <path d="M7 10l5 5 5-5z" fill="currentColor"></path>
+                            </svg>
+                        </a>
+                        <ul class="dropdown">
+                            <li><a href="/comedy">Comedy Shows</a></li>
+                            <li><a href="/kids">Kids</a></li>
+                            <li><a href="/adventure">Adventure and Fun</a></li>
+                            <li><a href="/music">Music Shows</a></li>
+                            <li><a href="/art">Art and Crafts</a></li>
+                            <li><a href="/workshops">Workshops and More</a></li>
+                            <li><a href="/game">Interactive Games</a></li>
+                            <li><a href="/upskill">Upskill and Training</a></li>
+                            <li><a href="/food">Food and Drinks</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"><a href="/category" class="nav-link">ListYourShow</a></li>
+                    <li class="nav-item"><a href="/contact" class="nav-link">Contact</a></li>
+                    <li class="nav-item"><a href="/help" class="nav-link">Help</a></li>
+                </ul>
+
+                <div class="nav-actions">
+  <div class="search-container">
+    <form class="search-bar d-flex" action="/search" method="GET" id="searchForm" onsubmit="return validateSearch()">
+      <input type="text" class="search-input" placeholder="Search..." name="query" id="searchInput">
+      <button class="search-btn"><i class="fas fa-search"></i></button>
+    </form>
+  </div>
+</div>
+            </div>
+        </nav> 
+    </header>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2 class="fs-4 fw-bold">Discover Every Show in Every Moment.<br>All in One Place</h2>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-container container-fluid my-4">
+        <div id="shows-container" class="d-flex flex-wrap gap-4 justify-content-start w-100">
+            <% if (events.length === 0) { %>
+                <div class="no-shows w-100">
+                    <h2><%= query %> - No Shows Found</h2>
+                    <p>Try changing your filters or check back later.</p>
+                </div>
+            <% } else { %>
+                <% events.forEach(evt => { %>
+                    <div class="show-card border rounded p-2" style="width: 300px;">
+                        <div class="show-image position-relative">
+                            <img src="/uploads/img/<%= evt.eventPhotos[0] %>" alt="Artist Photo" class="img-fluid w-100 rounded" style="height: 200px; object-fit: cover;">
+                            <span class="promo-tag position-absolute top-0 start-0 px-2 py-1 fw-bold">PROMOTED</span>
+                            <span class="show-date position-absolute bottom-0 end-0 bg-dark text-white px-2 py-1 rounded-start">
+                                <%= new Date(evt.date).toLocaleDateString() %>
+                            </span>
+                        </div>
+                        <div class="show-content mt-2">
+                            <h3 class="h5 show-title"><%= evt.title %></h3>
+                            <p class="text-muted mb-1"><%= evt.artists.join(', ') %></p>
+                            <p class="mb-1"><i class="fas fa-map-marker-alt me-2"></i><%= evt.address %></p>
+                            <p class="fw-bold">₹ <%= evt.price %></p>
+                            <a href="/card/<%= evt._id %>" class="btn btn-outline-dark btn-sm mt-2 w-100">Book Now</a>
+                        </div>
+                    </div>
+                <% }) %>
+            <% } %>
+        </div>
+    </div>
+     <script>
+// are yar mai na ye karna chatha hu serach ki value khali ho aur ma 
+
+  function validateSearch() {
+    const searchValue = document.getElementById('searchInput').value.trim();
+    
+    if (searchValue === '') {
+      // Show alert if search input is empty
+      alert('Your search is empty! Please enter what you want to search for.');
+      return false; // Prevent form submission
+    }
+    
+    // Allow form submission if input has value
+    return true;
+  }
+// ab kr
+     </script>
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="/js/comedy.js"></script>
+    <script src="/js/cursor.js"></script>
+        <script src="/js/index.js"></script>
+
+</body>
+</html>

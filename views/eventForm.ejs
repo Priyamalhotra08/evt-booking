@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Submission Form</title>
+    <link rel="stylesheet" href="/styles/eventForm.css">
+    <link rel="stylesheet" href="/styles/home2.css">
+</head>
+<body>
+      <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+    
+    <canvas class="blob-canvas"></canvas>
+    <div class="container">
+        <div class="form-header">
+            <h1>Event Submission Form</h1>
+            <p>Fill in the details to submit your spectacular show!</p>
+        </div>
+        
+        <form id="eventForm" action="/eventForm" method="POST" enctype="multipart/form-data">
+            <div class="form-body">
+                <!-- Title -->
+                <div class="form-group">
+                    <label for="title">Title of the Show</label>
+                    <input type="text" name="title" id="title" class="form-control" placeholder="Enter the title of your show" required>
+                </div>
+                <div class="form-group">
+                <label for="category">Category:</label>
+                <% if (selectedCategory) { %>
+                    <input type="hidden" name="category" value="<%= selectedCategory %>">
+                  <% } %>
+                  
+            <select name="category" id="category" class="form-control" required <%= selectedCategory ? 'disabled' : '' %>>
+  
+                <option value="">Select category</option>
+  <option value="Comedy" <%= selectedCategory === 'Comedy' ? 'selected' : '' %>> Comedy Shows</option>
+  <option value="Kids" <%= selectedCategory === 'Kids' ? 'selected' : '' %> >Kids</option>
+  <option value="Adventure"  <%= selectedCategory === 'Adventure' ? 'selected' : '' %>> Adventure and Fun</option>
+  <option value="Music"<%= selectedCategory === 'Music' ? 'selected' : '' %>> Music Shows</option>
+  <option value="Art" <%= selectedCategory === 'Art' ? 'selected' : '' %> >Art and Crafts</option>
+  <option value="Workshops" <%= selectedCategory === 'Workshops' ? 'selected' : '' %> >Workshops and More</option>
+  <option value="Games" <%= selectedCategory === 'Interactive games' ? 'selected' : '' %> >Interactive games </option>
+  <option value="Upskill" <%= selectedCategory === 'Upskill' ? 'selected' : '' %> >Upskill and Trainings</option>
+  <option value="Food" <%= selectedCategory === 'Food' ? 'selected' : '' %> >Food and Drinks</option>
+
+                 </select>
+                </div>
+                <!-- Date -->
+                <div class="form-group">
+                    <label for="date">Event Date</label>
+                    <input type="date" name="date" id="date" class="form-control" required  min="<%= new Date().toISOString().split('T')[0] %>">
+                </div>
+                
+                <!-- Time -->
+                <div class="form-group">
+                    <label for="time">Event Time</label>
+                    <input type="time" name="time" id="time" class="form-control" required>
+                </div>
+                
+                <!-- Age -->
+                <div class="form-group">
+                    <label for="age">Age Requirement</label>
+                    <input type="text" id="age" name="age" class="form-control" placeholder="e.g., 18+, All ages, etc." required>
+                </div>
+                
+                <!-- Language -->
+                <div class="form-group">
+                    <label for="language">Language</label>
+                    <input type="text" name="language" id="language" class="form-control" placeholder="Enter the language of the show" required>
+                </div>
+                
+                <!-- Address -->
+                <div class="form-group">
+                    <label for="address">Venue Address</label>
+                    <input type="text" name="address" id="address" class="form-control" placeholder="Enter the complete venue address" required>
+                </div>
+                
+                <!-- Artists -->
+                <div class="form-group">
+                    <label for="artists">Name of Artists</label>
+                    <div class="artists-container" id="artistsContainer">
+                        <div class="artist-entry">
+                            <input type="text" name="artists[]" class="form-control" placeholder="Enter artist name" required>
+                        </div>
+                    </div>
+                    <button type="button" name="artists[]" class="add-artist" id="addArtist">+ Add Another Artist</button>
+                </div>
+                
+                <!-- Description -->
+                <div class="form-group">
+                    <label for="description">Description of the Event (max 100 words)</label>
+                    <textarea id="description" name="description" class="form-control" placeholder="Enter a brief description of your event (max 100 words)" maxlength="500" required></textarea>
+                    <div class="word-count"><span id="wordCount">0</span>/100 words</div>
+                </div>
+                
+                <!-- Price -->
+                <div class="form-group">
+                    <label for="price">Ticket Price (₹)</label>
+                    <div class="price-input">
+                        <input type="number" name="price" id="price" class="form-control" placeholder="Enter ticket price" min="0" required>
+                    </div>
+                </div>
+                
+                <!-- File Uploads -->
+                 <div class="upload-sections">
+                    <div class="upload-section">
+                        <div class="file-upload">
+                            <div class="icon pulse">📸</div>
+                            <h3>Artist Photos</h3>
+                            <p>Upload high-quality images of the artists</p>
+                            <input type="file" name="artistPhotos" id="artistPhotos" accept="image/*" multiple>
+                            <ul id="artistPhotosPaths"></ul>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-section">
+                        <div class="file-upload">
+                            <div class="icon pulse">🎭</div>
+                            <h3>Event Photos</h3>
+                            <p>Upload promotional images for the event</p>
+                            <input type="file" name="eventPhotos" id="eventPhotos" accept="image/*" multiple >
+                            <ul id="eventPhotosPaths"></ul>
+                            <div class="preview-container" id="eventPhotosPreview"></div>
+
+                        </div>
+                    </div>
+                </div> 
+            </div>
+            
+            <div class="form-footer">
+                <button type="submit" class="btn">Submit Event</button>
+            </div>
+        </form>
+        
+       
+
+<!-- Overlay for popup effect -->
+<div id="overlay" class="overlay"></div>
+<!-- Update your success message container -->
+<div id="successMessage" class="success-message">
+    <h3>Event submitted successfully!</h3>
+    <p>Your event has been created. Thank you!</p>
+    <button id="closeSuccessMessage">Close</button>
+</div>
+    
+    </div>
+
+    
+<script src="/js/eventForm.js"></script>
+<script src="/js/cursor.js"></script>
+</body>
+</html>

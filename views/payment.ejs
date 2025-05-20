@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Page</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+<link rel="stylesheet" href="/styles/payment.css">
+ 
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>Complete Your Payment</h1>
+      <p>Secure payment powered by our trusted payment gateway</p>
+    </div>
+    
+    <div class="payment-container">
+      <div class="payment-form">
+        <h2>Payment Details</h2>
+        
+        <div class="form-group">
+          <label for="name">Cardholder Name</label>
+          <input type="text" id="name" class="form-control" value="<%= name %>" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" class="form-control" value="<%= user.email %>" readonly>
+        </div>
+        
+        <div class="form-group">
+          <label for="amount">Amount (₹)</label>
+          <input type="number" id="amount" class="form-control" min="1" step="1" value="<%= event ? event.price : '' %>" readonly>
+        </div>
+        <div class="form-group">
+  <label for="quantity">Quantity</label>
+  <div style="display: flex; align-items: center; gap: 0.5rem;">
+    <button type="button" id="decrease-qty" class="btn btn-outline-secondary" style="min-width: 2.5rem;">-</button>
+    <input type="number" id="quantity" class="form-control" min="1" step="1" value="1" max="<%= event && event.quantity ? event.quantity : 10 %>" required style="width: 70px; text-align: center;">
+    <button type="button" id="increase-qty" class="btn btn-outline-secondary" style="min-width: 2.5rem;">+</button>
+    <span style="margin-left: 1rem; color: #888;">(Available: <%= event && event.quantity ? event.quantity : 10 %>)</span>
+  </div>
+</div>
+
+        <div class="form-group">
+          <label>Payment Method</label>
+          <div class="payment-method">
+            <div class="payment-option active" data-method="card">
+              <i class="fas fa-credit-card"></i>
+              <div>Credit/Debit Card</div>
+            </div>
+            <div class="payment-option" data-method="upi">
+              <i class="fas fa-mobile-alt"></i>
+              <div>UPI</div>
+            </div>
+            <div class="payment-option" data-method="net-banking">
+              <i class="fas fa-university"></i>
+              <div>Net Banking</div>
+            </div>
+          </div>
+        </div>
+        
+        <div id="card-details">
+          <div class="form-group">
+            <label for="card-number">Card Number</label>
+            <input type="text" id="card-number" class="form-control" placeholder="1234 5678 9012 3456" maxlength="19">
+          </div>
+          
+          <div style="display: flex; gap: 1rem;">
+            <div class="form-group" style="flex: 2;">
+              <label for="expiry">Expiry Date (MM/YY)</label>
+              <input type="text" id="expiry" class="form-control" placeholder="MM/YY" maxlength="5">
+            </div>
+            
+            <div class="form-group" style="flex: 1;">
+              <label for="cvv">CVV</label>
+              <input type="password" id="cvv" class="form-control" placeholder="123" maxlength="3">
+            </div>
+          </div>
+        </div>
+        
+        <div id="error-container" class="alert alert-danger hidden"></div>
+        
+        <button id="pay-button" class="btn btn-primary btn-block">
+          <span>Pay Now</span>
+        </button>
+      </div>
+      
+      <div class="payment-summary">
+        <h2>Order Summary</h2>
+        
+        <div class="summary-item">
+          <span>Product</span>
+          <span>Event Ticket</span>
+        </div>
+        
+        <div class="summary-item">
+          <span>Location</span>
+          <span><%= user.state %></span>
+        </div>
+        
+        <div class="summary-item">
+          <span>Quantity</span>
+          <span id="summary-quantity">1</span>
+        </div>
+        
+        <div class="summary-item">
+          <span>Subtotal</span>
+          <span id="subtotal">₹0.00</span>
+        </div>
+        
+        <div class="summary-item">
+          <span>Tax (18%)</span>
+          <span id="tax">₹0.00</span>
+        </div>
+        
+        <div class="summary-item total">
+          <span>Total</span>
+          <span id="total">₹0.00</span>
+        </div>
+        
+        <div class="payment-icons">
+          <i class="fab fa-cc-visa"></i>
+          <i class="fab fa-cc-mastercard"></i>
+          <i class="fab fa-cc-amex"></i>
+          <i class="fab fa-cc-discover"></i>
+          <i class="fab fa-cc-paypal"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- OTP Modal -->
+  <div id="otpModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Email Verification</h2>
+      <p id="otp-message">Please enter the OTP sent to your email address.</p>
+      <p id="masked-email" style="text-align: center; font-weight: 600; margin-top: 0.5rem;"></p>
+      
+      <div class="otp-input-container">
+        <input type="text" class="otp-input" maxlength="1" autofocus>
+        <input type="text" class="otp-input" maxlength="1">
+        <input type="text" class="otp-input" maxlength="1">
+        <input type="text" class="otp-input" maxlength="1">
+        <input type="text" class="otp-input" maxlength="1">
+        <input type="text" class="otp-input" maxlength="1">
+      </div>
+      
+      <div id="timer" class="timer">OTP expires in: 5:00</div>
+      
+      <div id="otp-error" class="alert alert-danger hidden"></div>
+      <div id="otp-success" class="alert alert-success hidden"></div>
+      
+      <button id="verify-otp" class="btn btn-success btn-block">
+        <span>Verify OTP</span>
+      </button>
+      
+      <p style="text-align: center; margin-top: 1rem;">
+        Didn't receive OTP? <a href="#" id="resend-otp">Resend OTP</a>
+      </p>
+    </div>
+  </div>
+  
+  <script src="/js/payment.js"></script>
+</body>
+</html>

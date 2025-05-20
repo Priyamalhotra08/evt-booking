@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment <%= status === 'success' ? 'Successful' : 'Failed' %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+  <style>
+    :root {
+      --primary: #4a90e2;
+      --secondary: #5cb85c;
+      --danger: #d9534f;
+      --dark: #333;
+      --light: #f8f9fa;
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      background-color: #f5f5f5;
+      color: var(--dark);
+      line-height: 1.6;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 2rem;
+    }
+    
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    
+    .result-icon {
+      font-size: 5rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    .success-icon {
+      color: var(--secondary);
+    }
+    
+    .fail-icon {
+      color: var(--danger);
+    }
+    
+    h1 {
+      color: <%= status === 'success' ? 'var(--secondary)' : 'var(--danger)' %>;
+      margin-bottom: 1rem;
+    }
+    
+    p {
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+    }
+    
+    .transaction-details {
+      background-color: #f9f9f9;
+      padding: 1.5rem;
+      border-radius: 8px;
+      margin: 2rem 0;
+      text-align: left;
+    }
+    
+    .transaction-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid #eee;
+    }
+    
+    .transaction-row:last-child {
+      border-bottom: none;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-align: center;
+      text-decoration: none;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin: 0.5rem;
+    }
+    
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover {
+      background-color: #3a7bc8;
+    }
+    
+    .btn-success {
+      background-color: var(--secondary);
+      color: white;
+    }
+    
+    .btn-success:hover {
+      background-color: #4cae4c;
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      border: 1px solid var(--primary);
+      color: var(--primary);
+    }
+    
+    .btn-outline:hover {
+      background-color: var(--primary);
+      color: white;
+    }
+    
+    .buttons {
+      margin-top: 2rem;
+    }
+    
+    @keyframes checkmark {
+      0% { transform: scale(0); opacity: 0; }
+      50% { transform: scale(1.2); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    
+    .animated {
+      animation: checkmark 0.8s ease-in-out;
+    }
+    
+    .receipt {
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 1.5rem;
+      background: #fff;
+      border: 1px dashed #ccc;
+      position: relative;
+    }
+    
+    .receipt::before,
+    .receipt::after {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #f5f5f5;
+      border-radius: 50%;
+    }
+    
+    .receipt::before {
+      top: -10px;
+      left: -10px;
+    }
+    
+    .receipt::after {
+      top: -10px;
+      right: -10px;
+    }
+    
+    .receipt-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px dashed #ccc;
+    }
+    
+    .receipt-content {
+      margin-bottom: 1.5rem;
+    }
+    
+    @media print {
+      .no-print {
+        display: none;
+      }
+      
+      body {
+        padding: 0;
+        background: none;
+      }
+      
+      .container {
+        box-shadow: none;
+        padding: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <% if (status === 'success') { %>
+      <div class="result-icon success-icon animated">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <h1>Payment Successful!</h1>
+      <p>Your transaction has been completed successfully.</p>
+      
+      <div class="receipt">
+        <div class="receipt-header">
+          <h2>Payment Receipt</h2>
+          <p><%= new Date().toLocaleString() %></p>
+        </div>
+        
+        <div class="receipt-content">
+          <div class="transaction-row">
+            <span>Transaction ID:</span>
+            <span><%= txnId %></span>
+          </div>
+          <div class="transaction-row">
+            <span>Amount:</span>
+            <span>₹<%= parseFloat(amount).toFixed(2) %></span>
+          </div>
+          <div class="transaction-row">
+            <span>Status:</span>
+            <span style="color: var(--secondary); font-weight: bold;">PAID</span>
+          </div>
+          <div class="transaction-row">
+            <span>Customer:</span>
+            <span><%= name %></span>
+          </div>
+          <div class="transaction-row">
+            <span>Payment Method:</span>
+            <span>Credit/Debit Card</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="buttons no-print">
+        <button onclick="window.print()" class="btn btn-outline">
+          <i class="fas fa-print"></i> Print Receipt
+        </button>
+        <a href="/" class="btn btn-primary">Go to Home</a>
+      </div>
+      
+    <% } else { %>
+      <div class="result-icon fail-icon animated">
+        <i class="fas fa-times-circle"></i>
+      </div>
+      <h1>Payment Failed</h1>
+      <p>Sorry, your payment could not be processed at this time.</p>
+      
+      <div class="transaction-details">
+        <div class="transaction-row">
+          <span>Transaction ID:</span>
+          <span><%= txnId %></span>
+        </div>
+        <div class="transaction-row">
+          <span>Amount:</span>
+          <span>₹<%= parseFloat(amount).toFixed(2) %></span>
+        </div>
+        <div class="transaction-row">
+          <span>Status:</span>
+          <span style="color: var(--danger); font-weight: bold;">FAILED</span>
+        </div>
+        <div class="transaction-row">
+          <span>Reason:</span>
+          <span>Payment gateway declined the transaction</span>
+        </div>
+      </div>
+      
+      <p>Please try again or use a different payment method.</p>
+      
+      <div class="buttons">
+        <a href="/payment" class="btn btn-primary">Try Again</a>
+        <a href="/" class="btn btn-outline">Go to Home</a>
+      </div>
+    <% } %>
+    
+    <p style="margin-top: 2rem; font-size: 0.9rem; color: #666;">
+      If you have any questions, please contact our support team.
+    </p>
+  </div>
+  
+  <script>
+    // Add confetti animation for successful payments
+    if ('<%= status %>' === 'success') {
+      // Simple confetti effect (can be expanded)
+      function createConfetti() {
+        const confetti = document.createElement('div');
+        confetti.style.position = 'fixed';
+        confetti.style.width = '10px';
+        confetti.style.height = '10px';
+        confetti.style.backgroundColor = getRandomColor();
+        confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.top = '-10px';
+        confetti.style.zIndex = '-1';
+        document.body.appendChild(confetti);
+        
+        let speed = 3 + Math.random() * 5;
+        let rotation = Math.random() * 360;
+        let posX = parseFloat(confetti.style.left);
+        let posY = -10;
+        
+        function animate() {
+          posY += speed;
+          rotation += 5;
+          confetti.style.top = posY + 'px';
+          confetti.style.transform = 'rotate(' + rotation + 'deg)';
+          
+          if (posY < window.innerHeight) {
+            requestAnimationFrame(animate);
+          } else {
+            confetti.remove();
+          }
+        }
+        
+        animate();
+      }
+      
+      function getRandomColor() {
+        const colors = ['#4a90e2', '#5cb85c', '#f0ad4e', '#d9534f', '#5bc0de'];
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
+      
+      // Create confetti particles
+      for (let i = 0; i < 100; i++) {
+        setTimeout(createConfetti, i * 50);
+      }
+    }
+  </script>
+</body>
+</html>

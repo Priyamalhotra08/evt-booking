@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+  
+    <link rel="stylesheet" href="/styles/animation.css">
+    <link rel="stylesheet" href="/styles/register.css">
+      <link rel="stylesheet" href="/styles/responsive.css">
+     <!-- font-awesome -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+
+     <!-- Bootstrap-5 -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+ 
+     <!-- custom-styles -->
+    
+</head>
+<body>
+    
+    <!-- background -->
+    <div class="ls-bg">
+        <img class="ls-bg-inner" src="/images/bg.jpg" alt=""> 
+    </div>
+    
+    <main class="overflow-hidden">
+        <div class="wrapper">
+            <div class="main-inner">
+                <div class="row h-100 align-content-center">
+                    <div class="col-md-6 tab-100 order-md-2"  >
+                        <div class="side-text" >
+                            <article>
+                               
+                                <h1 class="main-heading">Register</h1>
+                             
+                            </article>
+
+                            <!-- login sign up button -->
+                            <div class="logSign">
+                                <button id="showlogin" type="button" > <a href="/login" class="text-decoration-none text-white text-capitalize">Login</a></button>
+                                <button id="showregister" type="button" class="active">Register</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 tab-100">
+
+                        <!-- form -->
+                       
+                        <!-- form -->
+                        <div class="form">
+            
+                                <h2 class="signup-form form-title">
+                                    Create your Account!
+                                </h2>
+
+                            <!-- sign up form -->
+                            <form action="/register" method="post"
+                            id="step2" class="signup-form d-block"  style="display: block;">
+                                <div class="input-field">
+                                    <input type="text" id="mail-email" name="email"  required>
+                                    <label>
+                                        Your Email
+                                    </label>
+                                </div>
+                                <div class="input-field delay-100ms">
+                                    <input type="text" id="user" name="name" required>
+                                    <label>
+                                        Name
+                                    </label>
+                                </div>
+                                <div class="input-field delay-300ms">
+                                    <input type="text" id="confirm" name="age" required>
+                                    <label>
+                                     Age
+                                    </label>
+                                </div>
+                                <div class="input-field delay-100ms">
+                                    <input type="text" id="state" name="state" required>
+                                    <label>
+                                        State
+                                    </label>
+                                </div>
+                                <div class="input-field delay-200ms">
+                                    <input type="password" id="password" name="password" required>
+                                    <label>
+                                        Password
+                                    </label>
+                                </div>
+                                
+                               
+                                <div class="login-btn">
+                                    <button type="submit" class ='signup'>Register Now!
+                                 
+                                </div>
+                            </form>
+
+              
+
+                            
+                        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        
+    </main>
+    <div id="error-popup" style="display:none;" class="alert alert-danger position-fixed top-0 end-0 translate-middle-x mt-3 p-3" role="alert">
+    </div>
+    <script>
+        $(document).ready(function()
+{
+  setTimeout(function()
+  {
+    $("form .input-field").each(function()
+    {
+      $(this).addClass('reveal');
+    })
+  }, 1000)
+
+})
+
+    </script>
+   
+        
+    <!-- Bootstrap-5 -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <!-- My js -->
+  <script src="/js/popup.js"></script>
+</body>
+</html>

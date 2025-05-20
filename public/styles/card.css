@@ -1,0 +1,54 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    color: #333;
+}
+.event-banner {
+    background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+    height: 400px;
+    position: relative;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.8);
+}
+.event-info-card {
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+.artist-img {
+    width: 100px;
+    border-radius: 12px;
+}
+.btn-interest {
+    border: 2px solid #ff4d6d;
+    color: #ff4d6d;
+}
+.btn-interest:hover {
+    background-color: #ff4d6d;
+    color: white;
+}
+.card-data{
+    background: #1a304d;
+ text-align: center;
+height: 100%;
+box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+backdrop-filter: blur(6px);
+-webkit-backdrop-filter: blur(6px);
+border: 1px solid rgba(73, 65, 65, 0.3);
+}
+@media only screen and (max-width:576px){
+    .card-data {
+    background: #1a304d;
+    text-align: center;
+    height: 100%;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border: 1px solid rgba(73, 65, 65, 0.3);
+    display: none;
+   background-size: cover;
+   background-position: center;
+  
+}
+}

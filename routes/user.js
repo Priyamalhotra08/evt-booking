@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const jwt = require('jsonwebtoken')
-const bcrypt = require('bcrypt') // ✅ fixed typo
+const bcrypt = require('bcryptjs') // ✅ fixed typo
 const { body, validationResult } = require('express-validator')
 const userModel = require('../models/usermodel')
 

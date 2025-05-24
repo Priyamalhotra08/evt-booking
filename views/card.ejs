@@ -92,7 +92,7 @@
             <h1 class="display-3 fw-bold mt-5"><%= evt.title %></h1>
             <p class="lead mt-5">feat <%= Array.isArray(evt.artists) ? evt.artists.join(', ') : evt.artists %></p>
         </div>
-        <div class="img-fluid w-100 rounded " style="background-image: url('/uploads/img/<%= evt.eventPhotos[0] %>'); width: 100%; height: 100%;  background-size: cover; background-repeat: no-repeat;">
+        <div class="img-fluid w-100 rounded " style="background-image: url('<%= evt.eventPhotos[0] %>'); width: 100%; height: 100%;  background-size: cover; background-repeat: no-repeat;">
         </div>
     </div>
     <div class="container mt-5">
@@ -112,7 +112,7 @@
                           <% if (artistPhotos[i]) { %>
                     <div class="text-center">
                       
-                        <img src="/uploads/img/<%= artistPhotos[i] %>" class="artist-img" style="width: 200px; height: 200px; object-fit: cover;">
+                        <img src="<%= artistPhotos[i] %>" class="artist-img" style="width: 200px; height: 200px; object-fit: cover;">
                        
                       
                         <h6 class="mb-0 mt-3 fw-bold fs-5"><%= artists[i] || 'Unknown Artist' %></h6>

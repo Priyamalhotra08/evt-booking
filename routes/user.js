@@ -4,7 +4,11 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs') // ✅ fixed typo
 const { body, validationResult } = require('express-validator')
 const userModel = require('../models/usermodel')
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> dc2ee0cb1b7f0baa52c605c9e447598f724e8952
 router.use(express.json())
 router.use(express.urlencoded({ extended: true }))
 

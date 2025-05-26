@@ -83,7 +83,9 @@ document.getElementById("step2").addEventListener("submit", function(event) {
     const popup = document.getElementById("error-popup");
     popup.innerHTML = message;
     popup.style.display = "block";
+  
+;
     setTimeout(() => {
       popup.style.display = "none";
-    }, 4000);
+    }, 5000);
   }

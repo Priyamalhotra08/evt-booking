@@ -26,11 +26,10 @@ This application demonstrates real-world implementation of CRUD operations, form
 
 ![Screenshot (221)](https://github.com/user-attachments/assets/faaaf1f0-be72-47fd-8710-fe43b73690a3)
 ![Screenshot (223)](https://github.com/user-attachments/assets/cc83f3dd-e291-48f5-b4f4-8df0418b5122) ![Screenshot (224)](https://github.com/user-attachments/assets/d4d7af2f-2c30-40b9-9e35-029154b2f7de) 
-![Screenshot (225)](https://github.com/user-attachments/assets/f0a6ca22-c545-4d64-b39d-e23007ebf4fb)![Screenshot (226)](https://github.com/user-attachments/![Screenshot (229)](https://github.com/user-attachments/assets/be48cfdf-6014-4026-868e-4aff0a02240c)
-assets/496fe5fe-6d4b-4793-9d1b-8e205916db67)  
-
+![Screenshot (225)](https://github.com/user-attachments/assets/f0a6ca22-c545-4d64-b39d-e23007ebf4fb)
 ![Screenshot (228)](https://github.com/user-attachments/assets/82df3369-5ad5-48d8-ac8b-ba6f0882d98d)
 
 
 
+![Screenshot (229)](https://github.com/user-attachments/assets/1a98dc64-4cae-4947-b8d0-4135f2eaee6a)
 
